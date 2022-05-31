@@ -10,6 +10,32 @@
 </head>
 <body>
     
+    <!--Header Section-->
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+
+    <!--Using Bootstrap to layout the dashboard-->
+    <div class="container-fluid mt-5">
+        <div class="row">
+
+            <!--Display the search input and recent searchbox-->
+            <div class="col-lg-3 border rounded search">
+                <div class="mt-4">
+
+                    <!--Heading-->
+                    <h4 class="search-title">Search</h4>
+
+                    <!--Form for searching the city-->
+                    <div class="form">
+                        <label for="search-text" class="city">Search for a city:</label>
+                        <input type="text" id="search-text" name="search" palceholder="Enter a city">
+                        <button id="search-button">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--Script Files-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
