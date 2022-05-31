@@ -29,6 +29,10 @@ body {
     display: none;
 }
 
+.line {
+    border: 1px solid var(--Light-Cyan);
+}
+
 /* Start Header Section */
 header {
     text-align: center;
@@ -110,3 +114,32 @@ ul li {
     padding: 10px;
 }
 /* End Search Section */
+
+/* Start the Current Weather Section */
+.current {
+    background-color: var(--Glossy-Grape);
+    margin-left: 40px;
+    border-radius: 5px;
+    box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
+}
+.current h4 {
+    text-align: center;
+    background-color: var(--Light-Cyan);
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
+}
+/* End the Current Weather Section */
+
+/* Start 5 day forecast Section */
+.card {
+    width: 205px;
+    box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card-heading {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--Light-Cyan);
+}
+/* End 5 day forecast Section */

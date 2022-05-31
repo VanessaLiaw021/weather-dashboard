@@ -47,8 +47,83 @@
                 </div>
             </div>
 
+            <!--Display the current weather forecast and the next 5 day forecast-->
             <div class="col-lg-7 border rounded current">
 
+                <!--Display the current weather-->
+                <div class="mt-4">
+
+                    <!--Heading-->
+                    <h4 id="current-day" class="search-title">May 31, 2022</h4>
+
+                    <!--City Name that was inputted-->
+                    <p class="text-center pt-2 title">Charlotte</p>
+
+                    <!--Display the image of the weather forecast-->
+                    <div id="current-img"></div>
+
+                    <!--Display the current weather content-->
+                    <div class="current-content d-flex justify-content-around align-items-center">
+
+                        <!--Display Temperature and Wind Speed-->
+                        <div class="d-flex flex-column">
+                            <p>Temperature:</p>
+                            <p>Wind:</p>
+                        </div>
+                        
+                        <!--Display humidity and UV Index-->
+                        <div class="d-flex flex-column">
+                            <p>Humidity:</p>
+                            <p>UV Index:</p>
+                        </div>
+                    </div>  
+                </div>
+
+                <!--Divider line between current and 5 day forecast-->
+                <hr class="line mt-4">
+
+                <!--Display the next 5 day forecast-->
+                <div class="mt-4">
+
+                    <!--Heading-->
+                    <h4 class="search-title mt-3">5 Day Forecast</h4>
+
+                    <!--Display the next 5 day forecast in a card-->
+                    <div id="next-five-days">
+                        <div class="d-flex justify-content-around mb-4">
+                          <div class="card mt-3">
+                            <p class="text-center card-heading">05/31/2022</p>
+                            <div id="img1"></div>
+                            <p class="ml-3">Temperature:</p>
+                            <p class="ml-3">Humidity:</p>
+                          </div>
+                          <div class="card mt-3">
+                            <p class="text-center card-heading">05/31/2022</p>
+                            <div id="img2"></div>
+                            <p class="ml-3">Temperature:</p>
+                            <p class="ml-3">Humidity:</p>
+                          </div>
+                          <div class="card mt-3">
+                            <p class="text-center card-heading">05/31/2022</p>
+                            <div id="img3"></div>
+                            <p class="ml-3">Temperature:</p>
+                            <p class="ml-3">Humidity:</p>
+                          </div>
+                          <div class="card mt-3">
+                            <p class="text-center card-heading">05/31/2022</p>
+                            <div id="img4"></div>
+                            <p class="ml-3">Temperature: </p>
+                            <p class="ml-3">Humidity:</p>
+                          </div>
+                          <div class="card mt-3">
+                            <p class="text-center card-heading">05/31/2022</p>
+                            <div id="img5"></div>
+                            <p class="ml-3">Temperature:</p>
+                            <p class="ml-3">Humidity:</p>
+                          </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
