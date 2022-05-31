@@ -39,6 +39,7 @@ header {
     background-color: var(--Neon-Blue);
     padding: 20px;
     color: white;
+    border-bottom: 1px solid white;
 }
 
 header h1 {
