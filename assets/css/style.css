@@ -130,6 +130,14 @@ ul li {
     padding: 15px;
     box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
 }
+
+.title {
+    font-size: 25px;
+}
+
+.current-content {
+    font-size: 20px;
+}
 /* End the Current Weather Section */
 
 /* Start 5 day forecast Section */
