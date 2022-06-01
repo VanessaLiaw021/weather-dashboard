@@ -25,10 +25,6 @@ body {
     margin: 0 auto;
 }
 
-.hide {
-    display: none;
-}
-
 .line {
     border: 1px solid var(--Light-Cyan);
 }
@@ -130,6 +126,12 @@ ul li {
     box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
 }
 
+#current-img {
+    display: block; 
+    margin: 0 auto;
+    height: 120px;
+}
+
 .title {
     font-size: 25px;
 }
@@ -137,11 +139,17 @@ ul li {
 .current-content {
     font-size: 20px;
 }
+
+.color {
+    padding: 5px;
+    color: var(--Black);
+    border-radius: 5px;
+}
 /* End the Current Weather Section */
 
 /* Start 5 day forecast Section */
 .card {
-    width: 205px;
+    width: 250px;
     box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -149,5 +157,16 @@ ul li {
     padding-top: 20px;
     padding-bottom: 20px;
     border-bottom: 2px solid var(--Light-Cyan);
+}
+
+.card-content {
+    font-size: 12px;
+}
+
+.img {
+    width: 80px;
+    margin: 0 auto;
+    position: relative;
+    top: -10px;
 }
 /* End 5 day forecast Section */
