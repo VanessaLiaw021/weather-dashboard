@@ -102,6 +102,48 @@ $(document).ready(function() {
             $("#current-humidity").text("Humidity: " + humidityLevel + "%");
             $("#current-wind").text("Wind: " + windSpeed + " MPH");
 
+            //Variable that get the latitude and longitude to get the UV index
+            var latitude = response.coord.lat;
+            var longitude = response.coord.lon; 
+
+            //Variable that get the UV index in weather api 
+            var fetchUvIndex = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}4&exclude=hourly,daily&appid=${apiKey}`;
+
+            //Fetch the url for uv index and used the weather api 
+            $.ajax({
+
+                //Get the url of the API
+                url: fetchUvIndex,
+
+                //Get the method of the url 
+                method: "GET",
+
+            }).then(function(response) {
+
+                //Get the UV index based off of the latitude and longitude 
+                var uvIndex = response.current.uvi;
+
+                //Display the variable onto the html page
+                $("#current-uv-index").html(`UV Index: <span class="color">${uvIndex}</span>`);
+
+                //Determing that if the UX index is low, moderate, or high/extreme and set a color to each
+                if (uvIndex < 2) {
+
+                    //If UV index is below 2, it consider low
+                    $(".color").css("background-color", "green");
+
+                } else if (uvIndex <= 7 ) {
+
+                    //If UV index is between 2 and 7, it is consider moderate
+                    $(".color").css("background-color", "yellow");
+
+                } else {
+
+                    //If UV index is greater than 8 , it is consider high to extreme
+                    $(".color").css("background-color", "red");
+                }
+            });
+
         });
     }
 
