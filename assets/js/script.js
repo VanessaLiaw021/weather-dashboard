@@ -69,7 +69,6 @@ $(document).ready(function() {
 
         //Variable that get the weahter api 
         var fetchAPI = `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&appid=${apiKey}`;
-
         //Fetch the url and use the weather api
         $.ajax({
 
@@ -83,7 +82,7 @@ $(document).ready(function() {
 
             //Variable that get each of the required content  
             var cityName = response.name;
-            var date = moment.unix(response.main.dt).format("M/D/YYYY");
+            var date = moment.unix(response.dt).format("M/D/YYYY");
             var weatherIcon = `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`;
             var temperature = response.main.temp;
             var humidityLevel = response.main.humidity;
@@ -167,7 +166,7 @@ $(document).ready(function() {
 
         }).then(function(response) {
 
-            //Display each 
+            //Display each weather icon for next 5 day  
             var weatherIconOne = `http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png`;
             var weatherIconTwo = `http://openweathermap.org/img/wn/${response.list[1].weather[0].icon}@2x.png`;
             var weatherIconThree = `http://openweathermap.org/img/wn/${response.list[2].weather[0].icon}@2x.png`;
