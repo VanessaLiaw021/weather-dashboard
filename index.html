@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Dashboard</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
         <div class="row">
 
             <!--Display the search input and recent searchbox-->
-            <div class="col-lg-3 border rounded search">
+            <div class="col-3 border rounded search">
                 <div class="mt-4">
 
                     <!--Heading-->
@@ -28,7 +28,7 @@
 
                     <!--Form for searching the city-->
                     <div class="form">
-                        <label for="search-text" class="city">Search for a city:</label>
+                        <label for="search-text">Search for a city:</label>
                         <input type="text" id="search-text" name="search" placeholder="Enter a city">
                         <button id="search-button">Search</button>
                     </div>
@@ -48,19 +48,16 @@
             </div>
 
             <!--Display the current weather forecast and the next 5 day forecast-->
-            <div class="col-lg-7 border rounded current">
+            <div class="col-8 border rounded current invisible">
 
                 <!--Display the current weather-->
                 <div class="mt-4">
 
                     <!--Heading-->
-                    <h4 id="current-day" class="search-title">May 31, 2022</h4>
-
-                    <!--City Name that was inputted-->
-                    <p class="text-center pt-2 title">Charlotte</p>
+                    <h4 id="current-day" class="search-title"></h4>
 
                     <!--Display the image of the weather forecast-->
-                    <div id="current-img"></div>
+                    <img id="current-img" ></img>
 
                     <!--Display the current weather content-->
                     <div class="current-content d-flex justify-content-around align-items-center">
@@ -82,7 +79,7 @@
                 <!--Divider line between current and 5 day forecast-->
                 <hr class="line mt-4">
 
-                <!--Display the next 5 day forecast-->
+                 <!--Display the next 5 day forecast-->
                 <div class="mt-4">
 
                     <!--Heading-->
@@ -90,7 +87,7 @@
 
                     <!--Display the next 5 day forecast in a card-->
                     <div id="next-five-days" class="container">
-                        <div class="d-flex justify-content-around align-items-center mt-4 pb-4">
+                        <div class="parent d-flex justify-content-around align-items-center mt-4 pb-4">
                             <div class="card mr-2">
                                 <p class="text-center card-heading date-one"></p>
                                 <img id = "img1" class="img"></img>
@@ -99,32 +96,32 @@
                                 <p class="ml-3 card-content day-one-humidity"></p>
                             </div>
                             <div class="card mr-2">
-                                <p class="text-center card-heading date-one"></p>
-                                <img id = "img1" class="img"></img>
-                                <p class="ml-3 card-content day-one-temp"></p>
-                                <p class="ml-3 card-content day-one-wind"></p>
-                                <p class="ml-3 card-content day-one-humidity"></p>
+                                <p class="text-center card-heading date-two"></p>
+                                <img id = "img2" class="img"></img>
+                                <p class="ml-3 card-content day-two-temp"></p>
+                                <p class="ml-3 card-content day-two-wind"></p>
+                                <p class="ml-3 card-content day-two-humidity"></p>
                             </div>
                             <div class="card mr-2">
-                                <p class="text-center card-heading date-one"></p>
-                                <img id = "img1" class="img"></img>
-                                <p class="ml-3 card-content day-one-temp"></p>
-                                <p class="ml-3 card-content day-one-wind"></p>
-                                <p class="ml-3 card-content day-one-humidity"></p>
+                                <p class="text-center card-heading date-three"></p>
+                                <img id = "img3" class="img"></img>
+                                <p class="ml-3 card-content day-three-temp"></p>
+                                <p class="ml-3 card-content day-three-wind"></p>
+                                <p class="ml-3 card-content day-three-humidity"></p>
                             </div>
                             <div class="card mr-2">
-                                <p class="text-center card-heading date-one"></p>
-                                <img id = "img1" class="img"></img>
-                                <p class="ml-3 card-content day-one-temp"></p>
-                                <p class="ml-3 card-content day-one-wind"></p>
-                                <p class="ml-3 card-content day-one-humidity"></p>
+                                <p class="text-center card-heading date-four"></p>
+                                <img id = "img4" class="img"></img>
+                                <p class="ml-3 card-content day-four-temp"></p>
+                                <p class="ml-3 card-content day-four-wind"></p>
+                                <p class="ml-3 card-content day-four-humidity"></p>
                             </div>
-                            <div class="card mr-2">
-                                <p class="text-center card-heading date-one"></p>
-                                <img id = "img1" class="img"></img>
-                                <p class="ml-3 card-content day-one-temp"></p>
-                                <p class="ml-3 card-content day-one-wind"></p>
-                                <p class="ml-3 card-content day-one-humidity"></p>
+                            <div class="card">
+                                <p class="text-center card-heading date-five"></p>
+                                <img  id = "img5" class="img"></img>
+                                <p class="ml-3 card-content day-five-temp"></p>
+                                <p class="ml-3 card-content day-five-wind"></p>
+                                <p class="ml-3 card-content day-five-humidity"></p>
                             </div>
                         </div>
                     </div>
@@ -135,6 +132,7 @@
 
     <!--Script Files-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>

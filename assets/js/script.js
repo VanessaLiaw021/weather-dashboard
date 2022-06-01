@@ -1,6 +1,9 @@
 //When the page load, the document is ready to run the function 
 $(document).ready(function() {
 
+    //API Key to get use the OpenWeatherAPI
+    var apiKey = "f8bd4d0f6f0c65783299bae01aa1f960";
+
     //Function that will create an li element and append it to ul 
     function appendElement(cities) {
 
@@ -58,10 +61,57 @@ $(document).ready(function() {
     //Call the function to display from local storage and save it 
     displayFromLocalStorage();
 
+    //Function that will display the current weather 
+    function displayCurrentWeather() {
+
+        //Get the value of the user input 
+        var userInput = $("#search-text").val();
+
+        //Variable that get the weahter api 
+        var fetchAPI = `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&appid=${apiKey}`;
+
+        //Fetch the url and use the weather api
+        $.ajax({
+
+            //Get the url of the API 
+            url: fetchAPI,
+
+            //Get the method of the url 
+            method: "GET",
+
+        }).then(function(response) {
+
+            //Variable that get each of the required content  
+            var cityName = response.name;
+            var date = moment.unix(response.main.dt).format("M/D/YYYY");
+            var weatherIcon = `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`;
+            var temperature = response.main.temp;
+            var humidityLevel = response.main.humidity;
+            var windSpeed = response.wind.speed;
+
+            //Convert the temp from kelvin to farhenheit 
+            var convertTemp = ((temperature - 273.15) * (9/5) + 32).toFixed(2);
+
+            //Remove the invisible class when button is clicked 
+            $(".current").removeClass("invisible");
+
+            //Display the variable onto the html page 
+            $("#current-day").text(cityName + " (" + date + ")");
+            $("#current-img").attr("src", weatherIcon);
+            $("#current-temp").text("Temperature: " + convertTemp + " \u2109");
+            $("#current-humidity").text("Humidity: " + humidityLevel + "%");
+            $("#current-wind").text("Wind: " + windSpeed + " MPH");
+
+        });
+    }
+
     //When user click on search button, it will display their recent searches that were inputted
     $("#search-button").on("click", function() {
 
         //Call the function to submit the search 
         handleSubmitButton();
+
+        //Call the function to display the current weather
+        displayCurrentWeather();
     });
 });
