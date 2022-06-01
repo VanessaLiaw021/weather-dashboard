@@ -19,10 +19,15 @@
 body {
     background-color: var(--Light-Dark-Blue);
     color: var(--Black);
+    margin-bottom: 50px;
 }
 
 .border {
     margin: 0 auto;
+}
+
+.hide {
+    display: none;
 }
 
 .line {
@@ -32,9 +37,9 @@ body {
 /* Start Header Section */
 header {
     text-align: center;
-    background-color: var(--Neon-Blue);
+    background-color: var(--Light-Cyan);
     padding: 20px;
-    color: white;
+    color: var(--Black);
     border-bottom: 1px solid white;
 }
 
@@ -50,14 +55,27 @@ header h1 {
     background-color: var(--Glossy-Grape);
     border-radius: 5px;
     box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
-    margin-right: 90px;
 }
+
 .search h4 {
     text-align: center;
     background-color: var(--Light-Cyan);
     border-radius: 5px;
     padding: 15px;
     box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.clear-button {
+    width: 80px;
+    height: 28px;
+    box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
+    background-color: var(--Light-Cyan);
+    border: none;
+    border-radius: 5px;
+}
+
+.clear-button:hover {
+    box-shadow: 4px 4px rgba(0, 0, 0, 0.4);
 }
 
 .form {
@@ -117,6 +135,7 @@ ul li {
     margin-left: 40px;
     border-radius: 5px;
     box-shadow: 4px 4px rgba(0, 0, 0, 0.2);
+    height: 750px;
 }
 .current h4 {
     text-align: center;
