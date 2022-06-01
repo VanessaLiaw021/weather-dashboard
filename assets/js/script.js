@@ -13,7 +13,7 @@ $(document).ready(function() {
         //Create an li element to append to ul 
         var createLiElement = document.createElement("li");
 
-        //Append the user input to the li element 
+        //Get the user input to the button element 
         createLiElement.textContent = cities;
 
         //Append the li element to the ul element
@@ -147,6 +147,70 @@ $(document).ready(function() {
         });
     }
 
+    //Function to display the next five day forecast 
+    function displayNextFiveDay() {
+
+        //Get the value of the user input 
+        var userInput = $("#search-text").val();
+
+        //Variable the get the weather api 
+        var fetchFiveDayURL = `https://api.openweathermap.org/data/2.5/forecast?q=${userInput}&units=imperial&appid=${apiKey}`;
+
+        //Fetch the url for the next five day weather and use the weather api
+        $.ajax({
+
+            //Get the url of the API
+            url: fetchFiveDayURL,
+
+            //Get the method of the url 
+            method: "GET",
+
+        }).then(function(response) {
+
+            //Display each 
+            var weatherIconOne = `http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png`;
+            var weatherIconTwo = `http://openweathermap.org/img/wn/${response.list[1].weather[0].icon}@2x.png`;
+            var weatherIconThree = `http://openweathermap.org/img/wn/${response.list[2].weather[0].icon}@2x.png`;
+            var weatherIconFour = `http://openweathermap.org/img/wn/${response.list[3].weather[0].icon}@2x.png`;
+            var weatherIconFive = `http://openweathermap.org/img/wn/${response.list[4].weather[0].icon}@2x.png`;
+
+            //Forecast 1 
+            $(".date-one").text(moment().add(1, "d").format("M/D/YYYY"));
+            $("#img1").attr("src", weatherIconOne);
+            $(".day-one-temp").html("Temp: " + response.list[0].main.temp + " \u2109");
+            $(".day-one-wind").html("Wind: " + response.list[0].wind.speed + " MPH");
+            $(".day-one-humidity").html("Humidity: " + response.list[0].main.humidity + "%");
+
+            //Forecast 2
+            $(".date-two").text(moment().add(2, "d").format("M/D/YYYY"));
+            $("#img2").attr("src", weatherIconTwo);
+            $(".day-two-temp").html("Temp: " + response.list[1].main.temp + " \u2109");
+            $(".day-two-wind").html("Wind: " + response.list[1].wind.speed + " MPH");
+            $(".day-two-humidity").html("Humidity: " + response.list[1].main.humidity + "%");
+
+            //Forecast 3
+            $(".date-three").text(moment().add(3, "d").format("M/D/YYYY"));
+            $("#img3").attr("src", weatherIconThree);
+            $(".day-three-temp").html("Temp: " + response.list[2].main.temp + " \u2109");
+            $(".day-three-wind").html("Wind: " + response.list[2].wind.speed + " MPH");
+            $(".day-three-humidity").html("Humidity: " + response.list[2].main.humidity + "%");
+
+            //Forecast 4
+            $(".date-four").text(moment().add(4, "d").format("M/D/YYYY"));
+            $("#img4").attr("src", weatherIconFour);
+            $(".day-four-temp").html("Temp: " + response.list[3].main.temp + " \u2109");
+            $(".day-four-wind").html("Wind: " + response.list[3].wind.speed + " MPH");
+            $(".day-four-humidity").html("Humidity: " + response.list[3].main.humidity + "%");
+
+            //Forecast 5
+            $(".date-five").text(moment().add(5, "d").format("M/D/YYYY"));
+            $("#img5").attr("src", weatherIconFive);
+            $(".day-five-temp").html("Temp: " + response.list[4].main.temp + " \u2109");
+            $(".day-five-wind").html("Wind: " + response.list[4].wind.speed + " MPH");
+            $(".day-five-humidity").html("Humidity: " + response.list[4].main.humidity + "%");
+        });
+    }
+
     //When user click on search button, it will display their recent searches that were inputted
     $("#search-button").on("click", function() {
 
@@ -155,5 +219,8 @@ $(document).ready(function() {
 
         //Call the function to display the current weather
         displayCurrentWeather();
+
+        //Call the function to display the next five day weather
+        displayNextFiveDay();
     });
 });
