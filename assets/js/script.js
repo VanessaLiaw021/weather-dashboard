@@ -44,5 +44,24 @@ $(document).ready(function() {
     //Function that will get the item from local storage and save it on the html page 
     function displayFromLocalStorage() {
 
+        //Get the item in local storage and if not there create an empty array 
+        var cityList = JSON.parse(localStorage.getItem("cityList")) || [];
+
+        //Loop through each city that is inputted, display it, and save it on the html when page load
+        cityList.forEach(function(city) {
+
+            //Call the recent searches function to display it on the li element and save it to html page
+            appendElement(city.cities);
+        });
     }
+
+    //Call the function to display from local storage and save it 
+    displayFromLocalStorage();
+
+    //When user click on search button, it will display their recent searches that were inputted
+    $("#search-button").on("click", function() {
+
+        //Call the function to submit the search 
+        handleSubmitButton();
+    });
 });
