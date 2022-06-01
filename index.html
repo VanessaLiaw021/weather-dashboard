@@ -67,14 +67,14 @@
 
                         <!--Display Temperature and Wind Speed-->
                         <div class="d-flex flex-column current-content">
-                            <p>Temperature:</p>
-                            <p>Wind:</p>
+                            <p id="current-temp"></p>
+                            <p id="current-wind"></p>
                         </div>
                         
                         <!--Display humidity and UV Index-->
                         <div class="d-flex flex-column current-content">
-                            <p>Humidity:</p>
-                            <p>UV Index:</p>
+                            <p id="current-humidity"></p>
+                            <p id="current-uv-index"></p>
                         </div>
                     </div>  
                 </div>
@@ -89,38 +89,43 @@
                     <h4 class="search-title mt-3">5 Day Forecast</h4>
 
                     <!--Display the next 5 day forecast in a card-->
-                    <div id="next-five-days">
-                        <div class="d-flex justify-content-around mb-4">
-                          <div class="card mt-3">
-                            <p class="text-center card-heading">05/31/2022</p>
-                            <div id="img1"></div>
-                            <p class="ml-3">Temperature:</p>
-                            <p class="ml-3">Humidity:</p>
-                          </div>
-                          <div class="card mt-3">
-                            <p class="text-center card-heading">05/31/2022</p>
-                            <div id="img2"></div>
-                            <p class="ml-3">Temperature:</p>
-                            <p class="ml-3">Humidity:</p>
-                          </div>
-                          <div class="card mt-3">
-                            <p class="text-center card-heading">05/31/2022</p>
-                            <div id="img3"></div>
-                            <p class="ml-3">Temperature:</p>
-                            <p class="ml-3">Humidity:</p>
-                          </div>
-                          <div class="card mt-3">
-                            <p class="text-center card-heading">05/31/2022</p>
-                            <div id="img4"></div>
-                            <p class="ml-3">Temperature: </p>
-                            <p class="ml-3">Humidity:</p>
-                          </div>
-                          <div class="card mt-3">
-                            <p class="text-center card-heading">05/31/2022</p>
-                            <div id="img5"></div>
-                            <p class="ml-3">Temperature:</p>
-                            <p class="ml-3">Humidity:</p>
-                          </div>
+                    <div id="next-five-days" class="container">
+                        <div class="d-flex justify-content-around align-items-center mt-4 pb-4">
+                            <div class="card mr-2">
+                                <p class="text-center card-heading date-one"></p>
+                                <img id = "img1" class="img"></img>
+                                <p class="ml-3 card-content day-one-temp"></p>
+                                <p class="ml-3 card-content day-one-wind"></p>
+                                <p class="ml-3 card-content day-one-humidity"></p>
+                            </div>
+                            <div class="card mr-2">
+                                <p class="text-center card-heading date-one"></p>
+                                <img id = "img1" class="img"></img>
+                                <p class="ml-3 card-content day-one-temp"></p>
+                                <p class="ml-3 card-content day-one-wind"></p>
+                                <p class="ml-3 card-content day-one-humidity"></p>
+                            </div>
+                            <div class="card mr-2">
+                                <p class="text-center card-heading date-one"></p>
+                                <img id = "img1" class="img"></img>
+                                <p class="ml-3 card-content day-one-temp"></p>
+                                <p class="ml-3 card-content day-one-wind"></p>
+                                <p class="ml-3 card-content day-one-humidity"></p>
+                            </div>
+                            <div class="card mr-2">
+                                <p class="text-center card-heading date-one"></p>
+                                <img id = "img1" class="img"></img>
+                                <p class="ml-3 card-content day-one-temp"></p>
+                                <p class="ml-3 card-content day-one-wind"></p>
+                                <p class="ml-3 card-content day-one-humidity"></p>
+                            </div>
+                            <div class="card mr-2">
+                                <p class="text-center card-heading date-one"></p>
+                                <img id = "img1" class="img"></img>
+                                <p class="ml-3 card-content day-one-temp"></p>
+                                <p class="ml-3 card-content day-one-wind"></p>
+                                <p class="ml-3 card-content day-one-humidity"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
