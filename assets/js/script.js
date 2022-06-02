@@ -163,47 +163,36 @@ $(document).ready(function() {
 
         }).then(function(response) {
 
-            //Display each weather icon for next 5 day  
-            var weatherIconOne = `http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png`;
-            var weatherIconTwo = `http://openweathermap.org/img/wn/${response.list[1].weather[0].icon}@2x.png`;
-            var weatherIconThree = `http://openweathermap.org/img/wn/${response.list[2].weather[0].icon}@2x.png`;
-            var weatherIconFour = `http://openweathermap.org/img/wn/${response.list[3].weather[0].icon}@2x.png`;
-            var weatherIconFive = `http://openweathermap.org/img/wn/${response.list[4].weather[0].icon}@2x.png`;
+            //Append the element to these element 
+            var parentContainer = $(".parent");
+            
+            //For loop to only display the next five day forecast
+            for (var i = 0; i < 5; i++) {
 
-            //Forecast 1 
-            $(".date-one").text(moment().add(1, "d").format("M/D/YYYY"));
-            $("#img1").attr("src", weatherIconOne);
-            $(".day-one-temp").html("Temp: " + response.list[0].main.temp + " \u2109");
-            $(".day-one-wind").html("Wind: " + response.list[0].wind.speed + " MPH");
-            $(".day-one-humidity").html("Humidity: " + response.list[0].main.humidity + "%");
+                //Variable to get the day of next five day
+                var eachDay = response.list[i];
+                
+                //Get each of the required data from the weather api 
+                var date = moment().add(i + 1, "d").format("M/D/YYYY");
+                var temp = eachDay.main.temp;
+                var weatherIcon = `http://openweathermap.org/img/wn/${eachDay.weather[0].icon}@2x.png`;
+                var windSpeed = eachDay.wind.speed;
+                var humidityLevel = eachDay.main.humidity;
 
-            //Forecast 2
-            $(".date-two").text(moment().add(2, "d").format("M/D/YYYY"));
-            $("#img2").attr("src", weatherIconTwo);
-            $(".day-two-temp").html("Temp: " + response.list[1].main.temp + " \u2109");
-            $(".day-two-wind").html("Wind: " + response.list[1].wind.speed + " MPH");
-            $(".day-two-humidity").html("Humidity: " + response.list[1].main.humidity + "%");
+                //Create element for each content and display it on html
+                var cardContainer = $("<div class=card>");
+                var dateHeading = $(`<p class=text-center>${date}</p>`).addClass("card-heading");
+                var imgElement = $(`<img class=img src=${weatherIcon}>`);
+                var tempElement = $(`<p class=ml-3>Temp: ${temp} \u2109</p>`).addClass("card-content");
+                var windElement = $(`<p class=ml-3>Wind: ${windSpeed} MPH</p>`).addClass("card-content");
+                var humidityElement = $(`<p class=ml-3>Humidity: ${humidityLevel}%</p>`).addClass("card-content");
+            
+                //Append the created element to the card container
+                cardContainer.append(dateHeading, imgElement, tempElement, windElement, humidityElement);
 
-            //Forecast 3
-            $(".date-three").text(moment().add(3, "d").format("M/D/YYYY"));
-            $("#img3").attr("src", weatherIconThree);
-            $(".day-three-temp").html("Temp: " + response.list[2].main.temp + " \u2109");
-            $(".day-three-wind").html("Wind: " + response.list[2].wind.speed + " MPH");
-            $(".day-three-humidity").html("Humidity: " + response.list[2].main.humidity + "%");
-
-            //Forecast 4
-            $(".date-four").text(moment().add(4, "d").format("M/D/YYYY"));
-            $("#img4").attr("src", weatherIconFour);
-            $(".day-four-temp").html("Temp: " + response.list[3].main.temp + " \u2109");
-            $(".day-four-wind").html("Wind: " + response.list[3].wind.speed + " MPH");
-            $(".day-four-humidity").html("Humidity: " + response.list[3].main.humidity + "%");
-
-            //Forecast 5
-            $(".date-five").text(moment().add(5, "d").format("M/D/YYYY"));
-            $("#img5").attr("src", weatherIconFive);
-            $(".day-five-temp").html("Temp: " + response.list[4].main.temp + " \u2109");
-            $(".day-five-wind").html("Wind: " + response.list[4].wind.speed + " MPH");
-            $(".day-five-humidity").html("Humidity: " + response.list[4].main.humidity + "%");
+                //Append the card container to the parent container to see it on html page
+                parentContainer.append(cardContainer);
+            }
         });
     }
 
