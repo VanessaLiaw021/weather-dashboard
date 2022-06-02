@@ -23,8 +23,20 @@ $(document).ready(function() {
         //Get the value of the user input 
         var userInput = $("#search-text").val();
 
-        //Call the function recent searches to append it to the li element 
-        appendElement(userInput);
+        //Validate the user input 
+        if (userInput) {
+
+            //Call the function recent searches to append it to the li element 
+            appendElement(userInput);
+
+            //Add the class to remove the class hide when user enter a valid city
+            $(".display-message").addClass("hide");
+
+        } else {
+            
+            //Show the error message
+            $(".display-message").removeClass("hide");
+        }   
 
         //Store the user cities input into an object 
         var searches = {
