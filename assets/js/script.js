@@ -48,11 +48,11 @@ $(document).ready(function() {
             $(".display-message").removeClass("hide");
         }   
 
-        //Store the user cities input into an object 
+        //Store the user cities input into an object
         var searches = {
             cities: userInput
         }
-
+        
         //Get the item in local storage and if not there create an empty array 
         var cityList = JSON.parse(localStorage.getItem("cityList")) || [];
 
