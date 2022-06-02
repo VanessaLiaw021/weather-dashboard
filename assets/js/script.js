@@ -13,8 +13,13 @@ $(document).ready(function() {
         //Create a element to make the search history clickable
         var createElement = $(`<button class=ulButton><li>${cities}</li></button>`);
 
+        //When the history button is clicked, it will display the weather again
         createElement.on("click", function() {
+
+            //Call the function display the current weather
             displayCurrentWeather(cities);
+
+            //Call the function display the next five day weather 
             displayNextFiveDay(cities);
         });
 
