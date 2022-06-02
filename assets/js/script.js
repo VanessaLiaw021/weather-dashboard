@@ -13,6 +13,11 @@ $(document).ready(function() {
         //Create a element to make the search history clickable
         var createElement = $(`<button class=ulButton><li>${cities}</li></button>`);
 
+        createElement.on("click", function() {
+            displayCurrentWeather(cities);
+            displayNextFiveDay(cities);
+        });
+
         //Append the li element to the ul element
         ulElement.append(createElement);
     }
@@ -71,13 +76,14 @@ $(document).ready(function() {
     displayFromLocalStorage();
 
     //Function that will display the current weather 
-    function displayCurrentWeather() {
+    function displayCurrentWeather(cities) {
 
         //Get the value of the user input 
         var userInput = $("#search-text").val();
 
         //Variable that get the weahter api 
-        var fetchAPI = `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&appid=${apiKey}`;
+        var fetchAPI = `https://api.openweathermap.org/data/2.5/weather?q=${userInput || cities}&appid=${apiKey}`;
+
         //Fetch the url and use the weather api
         $.ajax({
 
@@ -156,13 +162,16 @@ $(document).ready(function() {
     }
 
     //Function to display the next five day forecast 
-    function displayNextFiveDay() {
+    function displayNextFiveDay(cities) {
+
+        //Append the element to these element 
+        var parentContainer = $(".parent");
 
         //Get the value of the user input 
         var userInput = $("#search-text").val();
 
         //Variable the get the weather api 
-        var fetchFiveDayURL = `https://api.openweathermap.org/data/2.5/forecast?q=${userInput}&units=imperial&appid=${apiKey}`;
+        var fetchFiveDayURL = `https://api.openweathermap.org/data/2.5/forecast?q=${userInput || cities}&units=imperial&appid=${apiKey}`;
 
         //Fetch the url for the next five day weather and use the weather api
         $.ajax({
@@ -175,8 +184,8 @@ $(document).ready(function() {
 
         }).then(function(response) {
 
-            //Append the element to these element 
-            var parentContainer = $(".parent");
+            //Empty the card if there is already content on the card
+            $(".parent").empty();
             
             //For loop to only display the next five day forecast
             for (var i = 0; i < 5; i++) {
@@ -198,7 +207,7 @@ $(document).ready(function() {
                 var tempElement = $(`<p class=ml-3>Temp: ${temp} \u2109</p>`).addClass("card-content");
                 var windElement = $(`<p class=ml-3>Wind: ${windSpeed} MPH</p>`).addClass("card-content");
                 var humidityElement = $(`<p class=ml-3>Humidity: ${humidityLevel}%</p>`).addClass("card-content");
-            
+
                 //Append the created element to the card container
                 cardContainer.append(dateHeading, imgElement, tempElement, windElement, humidityElement);
 
