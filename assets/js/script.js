@@ -48,6 +48,9 @@ $(document).ready(function() {
             $(".display-message").removeClass("hide");
         }   
 
+        //Clear the text after a button it clicked
+        $("#search-text").val("");
+
         //Store the user cities input into an object
         var searches = {
             cities: userInput
