@@ -56,15 +56,11 @@ $(document).ready(function() {
         //Get the item in local storage and if not there create an empty array 
         var cityList = JSON.parse(localStorage.getItem("cityList")) || [];
 
-        //If the user input is already in the cityList, no need to push to local storage again
-        if (userInput.includes(cityList)) {
+        //Push the array if not in local storage 
+        cityList.push(searches);
 
-            //Push the array if not in local storage 
-            cityList.push(searches);
-
-            //Set the key and value in local storage 
-            localStorage.setItem("cityList", JSON.stringify(cityList));
-        }
+        //Set the key and value in local storage 
+        localStorage.setItem("cityList", JSON.stringify(cityList));
     }
 
     //Function that will get the item from local storage and save it on the html page 
