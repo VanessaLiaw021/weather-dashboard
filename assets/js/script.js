@@ -21,7 +21,7 @@ $(document).ready(function() {
     function handleSubmitButton() {
 
         //Get the value of the user input 
-        var userInput = $("#search-text").val();
+        var userInput = $("#search-text").val().trim();
 
         //Validate the user input 
         if (userInput) {
