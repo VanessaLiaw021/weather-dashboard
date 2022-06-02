@@ -46,16 +46,13 @@ $(document).ready(function() {
             
             //Show the error message
             $(".display-message").removeClass("hide");
-        }   
+        }  
 
-        //Clear the text after a button it clicked
-        $("#search-text").val("");
-
-        //Store the user cities input into an object
+        //Store the user cities input into an object 
         var searches = {
             cities: userInput
         }
-        
+
         //Get the item in local storage and if not there create an empty array 
         var cityList = JSON.parse(localStorage.getItem("cityList")) || [];
 
@@ -91,87 +88,85 @@ $(document).ready(function() {
 
         //Variable that get the weahter api 
         var fetchAPI = `https://api.openweathermap.org/data/2.5/weather?q=${userInput || cities}&appid=${apiKey}`;
-
         //Fetch the url and use the weather api
-        fetch(fetchAPI)
+        $.ajax({
 
-            //Status of the response URL 
-            .then(function(response) {
-                return response.json();
-            })
+            //Get the url of the API 
+            url: fetchAPI,
 
-            .then(function(data) {
+            //Get the method of the url 
+            method: "GET",
 
-                //Variable that get each of the required content  
-                var cityName = data.name;
-                var date = moment.unix(data.dt).format("M/D/YYYY");
-                var weatherIcon = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-                var temperature = data.main.temp;
-                var humidityLevel = data.main.humidity;
-                var windSpeed = data.wind.speed;
+        }).then(function(response) {
 
-                //Convert the temp from kelvin to farhenheit 
-                var convertTemp = ((temperature - 273.15) * (9/5) + 32).toFixed(2);
+            //Variable that get each of the required content  
+            var cityName = response.name;
+            var date = moment.unix(response.dt).format("M/D/YYYY");
+            var weatherIcon = `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`;
+            var temperature = response.main.temp;
+            var humidityLevel = response.main.humidity;
+            var windSpeed = response.wind.speed;
 
-                //Remove the invisible class when button is clicked 
-                $(".current").removeClass("invisible");
+            //Convert the temp from kelvin to farhenheit 
+            var convertTemp = ((temperature - 273.15) * (9/5) + 32).toFixed(2);
 
-                //Display the variable onto the html page 
-                $("#current-day").text(cityName + " (" + date + ")");
-                $("#current-img").attr("src", weatherIcon);
-                $("#current-temp").text("Temperature: " + convertTemp + " \u2109");
-                $("#current-humidity").text("Humidity: " + humidityLevel + "%");
-                $("#current-wind").text("Wind: " + windSpeed + " MPH");
+            //Remove the invisible class when button is clicked 
+            $(".current").removeClass("invisible");
 
-                //Variable that get the latitude and longitude to get the UV index
-                var latitude = data.coord.lat;
-                var longitude = data.coord.lon; 
+            //Display the variable onto the html page 
+            $("#current-day").text(cityName + " (" + date + ")");
+            $("#current-img").attr("src", weatherIcon);
+            $("#current-temp").text("Temperature: " + convertTemp + " \u2109");
+            $("#current-humidity").text("Humidity: " + humidityLevel + "%");
+            $("#current-wind").text("Wind: " + windSpeed + " MPH");
 
-                //Variable that get the UV index in weather api 
-                var fetchUvIndex = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}4&exclude=hourly,daily&appid=${apiKey}`;
+            //Variable that get the latitude and longitude to get the UV index
+            var latitude = response.coord.lat;
+            var longitude = response.coord.lon; 
 
-                //Fetch the url for uv index and used the weather api 
-                fetch(fetchUvIndex)
+            //Variable that get the UV index in weather api 
+            var fetchUvIndex = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}4&exclude=hourly,daily&appid=${apiKey}`;
 
-                    //Status of the response URL 
-                    .then(function(response) {
-                        return response.json();
-                    })
+            //Fetch the url for uv index and used the weather api 
+            $.ajax({
 
-                    .then(function(data) {
+                //Get the url of the API
+                url: fetchUvIndex,
 
-                        //Get the UV index based off of the latitude and longitude 
-                        var uvIndex = data.current.uvi;
+                //Get the method of the url 
+                method: "GET",
 
-                        //Display the variable onto the html page
-                        $("#current-uv-index").html(`UV Index: <span class="color">${uvIndex}</span>`);
+            }).then(function(response) {
 
-                        //Determing that if the UX index is low, moderate, or high/extreme and set a color to each
-                        if (uvIndex < 2) {
+                //Get the UV index based off of the latitude and longitude 
+                var uvIndex = response.current.uvi;
 
-                            //If UV index is below 2, it consider low
-                            $(".color").css("background-color", "green");
+                //Display the variable onto the html page
+                $("#current-uv-index").html(`UV Index: <span class="color">${uvIndex}</span>`);
 
-                        } else if (uvIndex <= 7 ) {
+                //Determing that if the UX index is low, moderate, or high/extreme and set a color to each
+                if (uvIndex < 2) {
 
-                            //If UV index is between 2 and 7, it is consider moderate
-                            $(".color").css("background-color", "yellow");
+                    //If UV index is below 2, it consider low
+                    $(".color").css("background-color", "green");
 
-                        } else {
+                } else if (uvIndex <= 7 ) {
 
-                            //If UV index is greater than 8 , it is consider high to extreme
-                            $(".color").css("background-color", "red");
-                        }
-                    });
+                    //If UV index is between 2 and 7, it is consider moderate
+                    $(".color").css("background-color", "yellow");
 
+                } else {
+
+                    //If UV index is greater than 8 , it is consider high to extreme
+                    $(".color").css("background-color", "red");
+                }
             });
+
+        });
     }
 
     //Function to display the next five day forecast 
     function displayNextFiveDay(cities) {
-
-        //Append the element to these element 
-        var parentContainer = $(".parent");
 
         //Get the value of the user input 
         var userInput = $("#search-text").val();
@@ -180,46 +175,49 @@ $(document).ready(function() {
         var fetchFiveDayURL = `https://api.openweathermap.org/data/2.5/forecast?q=${userInput || cities}&units=imperial&appid=${apiKey}`;
 
         //Fetch the url for the next five day weather and use the weather api
-        fetch(fetchFiveDayURL)
+        $.ajax({
 
-            //Status of the response URL 
-            .then(function(response) {
-                return response.json();
-            })
+            //Get the url of the API
+            url: fetchFiveDayURL,
+
+            //Get the method of the url 
+            method: "GET",
+
+        }).then(function(response) {
+
+            //Append the element to these element 
+            var parentContainer = $(".parent");
+
+            $(".parent").empty();
             
-            .then(function(data) {
+            //For loop to only display the next five day forecast
+            for (var i = 0; i < 5; i++) {
 
-                //Empty the card if there is already content on the card
-                $(".parent").empty();
+                //Variable to get the day of next five day
+                var eachDay = response.list[i];
                 
-                //For loop to only display the next five day forecast
-                for (var i = 0; i < 5; i++) {
+                //Get each of the required data from the weather api 
+                var date = moment().add(i + 1, "d").format("M/D/YYYY");
+                var temp = eachDay.main.temp;
+                var weatherIcon = `http://openweathermap.org/img/wn/${eachDay.weather[0].icon}@2x.png`;
+                var windSpeed = eachDay.wind.speed;
+                var humidityLevel = eachDay.main.humidity;
 
-                    //Variable to get the day of next five day
-                    var eachDay = data.list[i];
-                    
-                    //Get each of the required data from the weather api 
-                    var date = moment().add(i + 1, "d").format("M/D/YYYY");
-                    var temp = eachDay.main.temp;
-                    var weatherIcon = `http://openweathermap.org/img/wn/${eachDay.weather[0].icon}@2x.png`;
-                    var windSpeed = eachDay.wind.speed;
-                    var humidityLevel = eachDay.main.humidity;
+                //Create element for each content and display it on html
+                var cardContainer = $("<div class=card>");
+                var dateHeading = $(`<p class=text-center>${date}</p>`).addClass("card-heading");
+                var imgElement = $(`<img class=img src=${weatherIcon}>`);
+                var tempElement = $(`<p class=ml-3>Temp: ${temp} \u2109</p>`).addClass("card-content");
+                var windElement = $(`<p class=ml-3>Wind: ${windSpeed} MPH</p>`).addClass("card-content");
+                var humidityElement = $(`<p class=ml-3>Humidity: ${humidityLevel}%</p>`).addClass("card-content");
+            
+                //Append the created element to the card container
+                cardContainer.append(dateHeading, imgElement, tempElement, windElement, humidityElement);
 
-                    //Create element for each content and display it on html
-                    var cardContainer = $("<div class=card>");
-                    var dateHeading = $(`<p class=text-center>${date}</p>`).addClass("card-heading");
-                    var imgElement = $(`<img class=img src=${weatherIcon}>`);
-                    var tempElement = $(`<p class=ml-3>Temp: ${temp} \u2109</p>`).addClass("card-content");
-                    var windElement = $(`<p class=ml-3>Wind: ${windSpeed} MPH</p>`).addClass("card-content");
-                    var humidityElement = $(`<p class=ml-3>Humidity: ${humidityLevel}%</p>`).addClass("card-content");
-
-                    //Append the created element to the card container
-                    cardContainer.append(dateHeading, imgElement, tempElement, windElement, humidityElement);
-
-                    //Append the card container to the parent container to see it on html page
-                    parentContainer.append(cardContainer);
-                }
-            });
+                //Append the card container to the parent container to see it on html page
+                parentContainer.append(cardContainer);
+            }
+        });
     }
 
     //When user click on search button, it will display their recent searches that were inputted
