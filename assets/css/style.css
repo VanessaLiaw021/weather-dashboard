@@ -121,11 +121,17 @@ ul {
     list-style-type: none;
 }
 
-ul li {
+ul button {
+    text-align: center;
     margin: 15px 0;
     background-color: var(--Light-Cyan);
     border-radius: 5px;
     padding: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: none;
 }
 /* End Search Section */
 

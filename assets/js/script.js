@@ -10,14 +10,11 @@ $(document).ready(function() {
         //Grab the ul element in html 
         var ulElement = $(".list-searches");
 
-        //Create an li element to append to ul 
-        var createLiElement = document.createElement("li");
-
-        //Get the user input to the button element 
-        createLiElement.textContent = cities;
+        //Create a element to make the search history clickable
+        var createElement = $(`<button class=ulButton><li>${cities}</li></button>`);
 
         //Append the li element to the ul element
-        ulElement.append(createLiElement);
+        ulElement.append(createElement);
     }
 
     //Function that read the user input and stored it in local storage 
