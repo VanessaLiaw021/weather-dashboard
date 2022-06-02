@@ -161,7 +161,7 @@ $(document).ready(function() {
                         }
                     });
 
-        });
+            });
     }
 
     //Function to display the next five day forecast 
@@ -184,7 +184,7 @@ $(document).ready(function() {
                 return response.json();
             })
             
-            .then(function(response) {
+            .then(function(data) {
 
                 //Empty the card if there is already content on the card
                 $(".parent").empty();
@@ -193,7 +193,7 @@ $(document).ready(function() {
                 for (var i = 0; i < 5; i++) {
 
                     //Variable to get the day of next five day
-                    var eachDay = response.list[i];
+                    var eachDay = data.list[i];
                     
                     //Get each of the required data from the weather api 
                     var date = moment().add(i + 1, "d").format("M/D/YYYY");
