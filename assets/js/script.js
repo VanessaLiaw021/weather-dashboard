@@ -188,6 +188,7 @@ $(document).ready(function() {
             //Append the element to these element 
             var parentContainer = $(".parent");
 
+            //Empty the parent when there is already content on the card
             $(".parent").empty();
             
             //For loop to only display the next five day forecast
