@@ -26,6 +26,14 @@ How a user would this weather dashboard website
 
 ## Visuals 
 
+This is what the user see when the page first loads
+
+![Weather Dashboard Before Searching](./assets/images/Weather-Dashboard.png)
+
+This is what the user see after they search for the city and it is save to recent searches section 
+
+![Weather Dashboard After Searching](./assets/images/Weather-Dashboard-After-Search.png)
+
 ## Resources 
 
 -[Live Site](https://vanessaliaw021.github.io/weather-dashboard/)
